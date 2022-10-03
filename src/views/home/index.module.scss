@@ -1,3 +1,40 @@
 .container {
-  // padding: 0 15%;
+  height: 100%;
+  background-color: #212121;
+
+  color: #fff;
+
+  > header {
+    padding: 10px;
+    text-align: center;
+    padding: 10% 0 0;
+  }
+
+  > main {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > a {
+      padding: 50px 100px;
+      margin: 20px;
+
+      border: 2px solid #333;
+      border-radius: 3px;
+
+      transition: all 0.3s;
+
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s;
+
+      &:hover {
+        cursor: pointer;
+        border-color: #009afe;
+
+        color: #009afe;
+      }
+    }
+  }
 }
