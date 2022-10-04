@@ -14,16 +14,17 @@ function Button(props: ButtonProps) {
   );
 }
 
+let recorder: MediaRecorder;
 function useRecorder(): [Blob[], () => void, () => void] {
   const [records, setRecords] = useState<Blob[]>([]);
 
-  const [recorder, setRecorder] = useState<MediaRecorder>();
-
   let chunks: Blob[] = [];
+
   const startRecorder = () => {
     if (!recorder) {
       navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
         const mediaRecorder = new MediaRecorder(stream);
+        recorder = mediaRecorder;
         mediaRecorder.onstart = function (e) {
           chunks = [];
         };
@@ -35,8 +36,6 @@ function useRecorder(): [Blob[], () => void, () => void] {
         };
 
         mediaRecorder.start();
-
-        setRecorder(mediaRecorder);
       });
     } else {
       recorder.start();
