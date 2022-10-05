@@ -35,8 +35,6 @@ function useRecorder(
         // 实时记录音频、视频
         const preview = videoRef.current;
         preview.srcObject = stream;
-        preview.captureStream =
-          preview.captureStream || preview.mozCaptureStream;
         return new Promise((resolve) => (preview.onplaying = resolve));
       })
       .then(() => {
@@ -63,14 +61,32 @@ function useRecorder(
   return [chunks, start, stop];
 }
 
-type RecorderProps = { upload: (chunks: Blob[]) => void };
-function Recorder(props: RecorderProps) {
+/**
+ * video自动播放
+ *
+ * @returns
+ */
+function useAutoplay() {
   const vRef = useRef(null);
 
   useEffect(() => {
-    const preview = vRef.current as any;
-    preview.autoplay = true;
+    const video = vRef.current as any;
+    video.onloadedmetadata = video.play;
   }, []);
+
+  return [vRef];
+}
+
+type RecorderProps = { upload: (chunks: Blob[]) => void };
+
+/**
+ * 录制视频
+ *
+ * @param props
+ * @returns
+ */
+function Recorder(props: RecorderProps) {
+  const [vRef] = useAutoplay();
 
   const [chunks, start, stop] = useRecorder(vRef);
 
@@ -112,8 +128,15 @@ function togglePictureInPicture(elRef: MutableRefObject<null>) {
 }
 
 type PlayerProps = { chunks: Blob[] };
+
+/**
+ * 播放已录制的视频
+ *
+ * @param props
+ * @returns
+ */
 function Player(props: PlayerProps) {
-  const vRef = useRef(null);
+  const [vRef] = useAutoplay();
 
   const [ready, setReady] = useState(false);
   const [url, setUrl] = useState<string>("");
@@ -134,10 +157,6 @@ function Player(props: PlayerProps) {
       size: blob.size,
       type: blob.type,
     });
-
-    // 设置自动播放
-    const ref = vRef.current as any;
-    ref.autoplay = flag;
   }, [props]);
 
   const footerEls = () => {
