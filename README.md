@@ -21,3 +21,17 @@
 - 视频录制
 - 视频文件下载
 - 画中画
+
+## 拍照
+
+[MDN DOC](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Taking_still_photos)
+
+客户端使用`navigator.mediaDevices.getUserMedia`获取的视频的`stream`，使用`<video>`承载视频。
+
+照片：使用`<canvas></canvas>`的`drawImage`API，绘制捕获到视频。
+
+照片：使用`<img />`标签接收`<canvas></canvas>`的内容。
+
+能力：
+
+- 照片

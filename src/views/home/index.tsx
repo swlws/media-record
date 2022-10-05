@@ -11,8 +11,8 @@ function Home() {
 
       <main>
         <NavLink to="/voice">录制声音</NavLink>
-        <NavLink to="/photo">拍照</NavLink>
         <NavLink to="/video">录制视频</NavLink>
+        <NavLink to="/photo">拍照</NavLink>
         <NavLink to="/screen">捕获屏幕</NavLink>
       </main>
     </article>

@@ -1,0 +1,36 @@
+.container {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+
+  > header {
+    flex: 1;
+    text-align: center;
+
+    > video {
+      width: 600px;
+      height: 400px;
+      border: 1px solid #009afe;
+    }
+
+    > button {
+      margin: 20px;
+    }
+  }
+
+  > main {
+    width: 500px;
+    text-align: center;
+
+    canvas,
+    img {
+      width: 300px;
+      height: 200px;
+      border: 1px solid #009afe;
+    }
+  }
+}
