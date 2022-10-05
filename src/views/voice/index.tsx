@@ -96,6 +96,9 @@ export default function Voice() {
       <main>
         <Button onClick={toggle} status={status} />
       </main>
+
+      <aside>录音列表</aside>
+
       <footer>
         {voices.map((v, i) => (
           <audio key={i} controls src={v}></audio>

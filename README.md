@@ -34,4 +34,12 @@
 
 能力：
 
-- 照片
+- 拍照
+
+## 共享屏幕
+
+客户端使用`navigator.mediaDevices.getDisplayMedia`获取需要共享的窗口，使用`<video>`承载视频。
+
+能力：
+
+- 共享选择的窗口
