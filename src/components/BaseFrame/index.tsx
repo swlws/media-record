@@ -25,9 +25,12 @@ type BaseFrameProps = {
 };
 
 export default function BaseFrame(props: BaseFrameProps) {
+  const to = () =>
+    (window.location.href = "https://github.com/swlws/media-record");
+
   return (
     <article className={styles.container}>
-      <aside>
+      <aside onClick={to}>
         <GithubSvg />
       </aside>
       <main>{props.children}</main>
